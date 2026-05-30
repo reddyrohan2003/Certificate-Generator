@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Brillnex Technologies — Certificate Generator</title>
+  <meta name="description" content="Generate official Brillnex Technologies certificates with live preview and instant PDF download." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&family=Great+Vibes&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-wrapper">
+    <div class="bg-blob bg-blob--1"></div>
+    <div class="bg-blob bg-blob--2"></div>
+    <div class="bg-blob bg-blob--3"></div>
+
+    <header class="header">
+      <div class="header__icon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="14" rx="2"/><path d="M3 7h18"/><path d="M8 21h8M12 17v4"/>
+        </svg>
+      </div>
+      <h1 class="header__title">Brillnex Certificate Generator</h1>
+      <p class="header__subtitle">Create &amp; download professional certificates</p>
+    </header>
+
+    <main class="main">
+      <!-- ===== Input Panel ===== -->
+      <section class="panel panel--inputs" aria-label="Certificate details">
+        <h2 class="panel__heading">
+          <span class="panel__heading-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          </span>
+          Certificate Details
+        </h2>
+
+        <div class="field">
+          <label class="field__label" for="studentName">Student Name</label>
+          <input class="field__input" type="text" id="studentName" placeholder="e.g. Jane Doe" autocomplete="off" maxlength="60" />
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="courseName">Course Name</label>
+          <input class="field__input" type="text" id="courseName" placeholder="e.g. Full Stack Web Development" autocomplete="off" maxlength="80" />
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Date controls -->
+        <div class="toggle-field">
+          <label class="toggle" for="showDate">
+            <input class="toggle__input" type="checkbox" id="showDate" checked />
+            <span class="toggle__track"></span>
+            <span class="toggle__label">Show Date</span>
+          </label>
+        </div>
+
+        <div class="date-field" id="dateField">
+          <div class="field">
+            <label class="field__label" for="certDateInput">Certificate Date</label>
+            <input class="field__input" type="date" id="certDateInput" />
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Signatures toggle -->
+        <div class="toggle-field">
+          <label class="toggle" for="showSignatures">
+            <input class="toggle__input" type="checkbox" id="showSignatures" />
+            <span class="toggle__track"></span>
+            <span class="toggle__label">Include Signatories</span>
+          </label>
+        </div>
+
+        <!-- Signature inputs (hidden by default) -->
+        <div class="sig-fields" id="sigFields">
+          <div class="sig-pair">
+            <div class="field field--half">
+              <label class="field__label" for="sig1Name">Signatory 1 — Name</label>
+              <input class="field__input" type="text" id="sig1Name" placeholder="e.g. Dr. Smith" autocomplete="off" maxlength="40" />
+            </div>
+            <div class="field field--half">
+              <label class="field__label" for="sig1Role">Signatory 1 — Title</label>
+              <input class="field__input" type="text" id="sig1Role" placeholder="e.g. Instructor" autocomplete="off" maxlength="30" />
+            </div>
+          </div>
+          <div class="sig-pair">
+            <div class="field field--half">
+              <label class="field__label" for="sig2Name">Signatory 2 — Name</label>
+              <input class="field__input" type="text" id="sig2Name" placeholder="e.g. Prof. Johnson" autocomplete="off" maxlength="40" />
+            </div>
+            <div class="field field--half">
+              <label class="field__label" for="sig2Role">Signatory 2 — Title</label>
+              <input class="field__input" type="text" id="sig2Role" placeholder="e.g. Director" autocomplete="off" maxlength="30" />
+            </div>
+          </div>
+        </div>
+
+        <button class="btn btn--download" id="downloadBtn" type="button">
+          <svg class="btn__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download PDF
+        </button>
+      </section>
+
+      <!-- ===== Preview Panel ===== -->
+      <section class="panel panel--preview" aria-label="Certificate preview">
+        <h2 class="panel__heading">
+          <span class="panel__heading-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </span>
+          Live Preview
+        </h2>
+        <div class="preview-frame">
+          <div class="certificate" id="certificate">
+
+            <div class="cert-border-outer"></div>
+            <div class="cert-border-inner"></div>
+
+            <div class="cert-ornament cert-ornament--tl">✦</div>
+            <div class="cert-ornament cert-ornament--tr">✦</div>
+            <div class="cert-ornament cert-ornament--bl">✦</div>
+            <div class="cert-ornament cert-ornament--br">✦</div>
+
+            <div class="cert-accent-line cert-accent-line--top"></div>
+            <div class="cert-accent-line cert-accent-line--bottom"></div>
+
+            <div class="cert-content">
+              <div class="cert-logo-wrap">
+                <img src="data:image/png;base64,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" alt="Brillnex Technologies" class="cert-logo" />
+              </div>
+
+              <p class="cert-title">Certificate of Completion</p>
+
+              <div class="cert-ornamental-divider">
+                <span class="cert-od-line"></span>
+                <span class="cert-od-diamond">◆</span>
+                <span class="cert-od-line"></span>
+              </div>
+
+              <p class="cert-subtitle">This certificate is proudly presented to</p>
+
+              <p class="cert-name" id="certName">Your Name</p>
+
+              <div class="cert-name-underline"></div>
+
+              <p class="cert-subtitle">for successfully completing the course</p>
+
+              <p class="cert-course" id="certCourse">Course Name</p>
+
+              <p class="cert-date" id="certDate"></p>
+
+              <!-- Signatures -->
+              <div class="cert-footer cert-footer--hidden" id="certFooter">
+                <div class="cert-signature">
+                  <p class="cert-signature__name" id="certSig1Name"></p>
+                  <div class="cert-signature__line"></div>
+                  <p class="cert-signature__role" id="certSig1Role">Signatory</p>
+                </div>
+                <div class="cert-seal">
+                  <div class="cert-seal__ring">
+                    <div class="cert-seal__inner">
+                      <span>★</span>
+                      <span class="cert-seal__text">BRILLNEX</span>
+                      <span class="cert-seal__sub">CERTIFIED</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="cert-signature">
+                  <p class="cert-signature__name" id="certSig2Name"></p>
+                  <div class="cert-signature__line"></div>
+                  <p class="cert-signature__role" id="certSig2Role">Signatory</p>
+                </div>
+              </div>
+
+              <p class="cert-tagline">Learn Today . Lead Tomorrow</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="html2canvas.min.js"></script>
+  <script src="jspdf.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
